@@ -1,17 +1,21 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/booksapi');
 const booksModel = require('./model');
+const express = require('express');
+const server = express();
+server.use(express.json());
 
 // http://localhost:3001/addBook
 async function addBook(req, res) {
-    let { Title, Status, Description, Email} = req.body;
+    console.log(req.body);
+    let { bookTitle, bookDescription, bookStatus, userEmail} = req.body;
     await booksModel.create({
-        title:Title,
-        description:Description,
-        status:Status,
-        email:Email
+        title:bookTitle,
+        description:description,
+        status:bookStatus,
+        email:userEmail
     })
-    booksModel.find({ email: Email}, function (error, data) {
+    booksModel.find({ email: userEmail}, function (error, data) {
         if (error) {
             res.send('Error in getting data')
         } else {

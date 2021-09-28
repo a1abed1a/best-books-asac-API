@@ -25,7 +25,7 @@ function seedBooksInfo() {
     user2.save();
     user3.save();
 }
-seedBooksInfo();
+// seedBooksInfo();
 
 // http://localhost:3001/myBooks?email=<email>
 function handleBooks(req, res) {
