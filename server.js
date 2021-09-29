@@ -6,10 +6,11 @@ require('dotenv').config();
 const handleBooks = require('./modules/books')
 const addBook = require('./modules/addBook')
 const deleteBook = require('./modules/deleteBook')
-
+const editBook = require('./modules/editBook')
 
 const server = express();
 server.use(cors());
+server.use(express.json());
 const PORT = process.env.PORT;
 
 server.get('/', homeRouteHandler);
@@ -20,6 +21,8 @@ server.get('/myBooks',handleBooks)
 server.post('/addBook', addBook);
 // http://localhost:3001/deleteBook
 server.delete('/deleteBook', deleteBook);
+// http://localhost:3001/updateBook
+server.put('/updateBook', editBook);
 
 server.get('*', notFoundHandler);
 
